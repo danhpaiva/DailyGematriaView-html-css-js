@@ -1,4 +1,7 @@
 import { dateToGematria, MEANINGS } from './calculator.js';
+import { initThemeToggle } from './theme.js';
+
+initThemeToggle();
 
 const STORAGE_KEY = 'gematria_birthday';
 const SITE_URL    = 'https://danhpaiva.github.io/DailyGematriaView-html-css-js/';
