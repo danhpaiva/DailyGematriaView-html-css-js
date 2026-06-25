@@ -21,8 +21,8 @@
 
         <div class="card__divider"></div>
 
-        <div class="card__row card__row--highlight">
-          <span class="card__label">Número</span>
+        <div class="card__row">
+          <span class="card__label">Número do Dia</span>
           <span class="card__value card__value--number" id="display-number"></span>
         </div>
 
@@ -31,6 +31,52 @@
         <div class="card__meaning">
           <span class="card__label">Significado</span>
           <p class="card__meaning-text" id="display-meaning"></p>
+        </div>
+      </section>
+
+      <!-- Birthday card -->
+      <section class="card card--birthday" id="birthday-card" aria-live="polite">
+        <!-- State: no birthday saved -->
+        <div id="birthday-form">
+          <p class="card__label" style="margin-bottom:.75rem">Número de Destino</p>
+          <div class="birthday-input-row">
+            <input
+              type="date"
+              id="birthday-input"
+              class="birthday-input"
+              aria-label="Data de aniversário"
+            />
+            <button class="birthday-btn" id="birthday-save">Salvar</button>
+          </div>
+          <p class="birthday-hint">Informe sua data de nascimento para calcular seu número de destino.</p>
+        </div>
+
+        <!-- State: birthday saved (hidden until filled) -->
+        <div id="birthday-result" hidden>
+          <div class="card__row">
+            <span class="card__label">Aniversário</span>
+            <span class="card__value" id="display-birthday"></span>
+          </div>
+
+          <div class="card__divider"></div>
+
+          <div class="card__row">
+            <span class="card__label">Número de Destino</span>
+            <span class="card__value card__value--number card__value--destiny" id="display-destiny"></span>
+          </div>
+
+          <div class="card__divider"></div>
+
+          <div class="card__meaning">
+            <span class="card__label">Significado</span>
+            <p class="card__meaning-text" id="display-destiny-meaning"></p>
+          </div>
+
+          <div class="card__divider"></div>
+
+          <div class="birthday-actions">
+            <button class="birthday-btn birthday-btn--ghost" id="birthday-edit">Alterar data</button>
+          </div>
         </div>
       </section>
 

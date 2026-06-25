@@ -145,6 +145,78 @@ body {
   color: var(--color-muted);
 }
 
+/* ── Destiny number accent ──────────────────────────────── */
+.card__value--destiny {
+  color: #a07cc5;
+}
+
+/* ── Birthday form ──────────────────────────────────────── */
+.birthday-input-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.birthday-input {
+  flex: 1;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.55rem 0.75rem;
+  outline: none;
+  transition: border-color 200ms;
+  color-scheme: dark;
+}
+
+.birthday-input:focus {
+  border-color: var(--color-accent);
+}
+
+.birthday-btn {
+  background: var(--color-accent);
+  border: none;
+  border-radius: 8px;
+  color: #0d0d0d;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.55rem 1rem;
+  transition: opacity 200ms;
+  white-space: nowrap;
+}
+
+.birthday-btn:hover { opacity: 0.85; }
+
+.birthday-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.birthday-btn--ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.birthday-hint {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.birthday-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 360px) {
   .card { padding: 1.25rem; }
