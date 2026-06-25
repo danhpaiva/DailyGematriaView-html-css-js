@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Gematria View</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1 class="header__title">Daily Gematria View</h1>
+        <p class="header__subtitle">Redução Teosófica &amp; Simbolismo Judaico</p>
+      </header>
+
+      <section class="card" id="result" aria-live="polite">
+        <div class="card__row">
+          <span class="card__label">Data</span>
+          <span class="card__value" id="display-date"></span>
+        </div>
+
+        <div class="card__divider"></div>
+
+        <div class="card__row card__row--highlight">
+          <span class="card__label">Número</span>
+          <span class="card__value card__value--number" id="display-number"></span>
+        </div>
+
+        <div class="card__divider"></div>
+
+        <div class="card__meaning">
+          <span class="card__label">Significado</span>
+          <p class="card__meaning-text" id="display-meaning"></p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Baseado no simbolismo dos números na tradição judaica</p>
+      </footer>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
