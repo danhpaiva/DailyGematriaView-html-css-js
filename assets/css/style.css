@@ -225,6 +225,65 @@ body {
 .birthday-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* ── Share button ───────────────────────────────────────── */
+.card__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.45rem 0.85rem;
+  transition: border-color 200ms, color 200ms;
+  white-space: nowrap;
+}
+
+.share-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.share-btn--ghost {
+  /* inherits .share-btn; identical ghost treatment */
+}
+
+/* ── Toast ──────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 300ms ease, transform 300ms ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* ── Responsive ────────────────────────────────────────── */
