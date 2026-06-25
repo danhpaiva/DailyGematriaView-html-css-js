@@ -41,7 +41,7 @@ A aplicação lê a data atual do sistema, soma todos os dígitos (dia + mês + 
 - **Número do Dia** — redução teosófica da data atual
 - **Número de Destino** — insira sua data de nascimento para calcular seu número pessoal (salvo em `localStorage`)
 - **Compartilhar** — Web Share API no mobile, fallback para clipboard no desktop
-- **Paleta Templo de Salomão** — azul *tekhelet*, ouro do *Kodesh HaKodashim* e púrpura *argamán*
+- **Tema claro / escuro** — toggle ☀️ / 🌙 com transição suave; respeita `prefers-color-scheme` e persiste no `localStorage`
 
 ---
 
@@ -54,18 +54,20 @@ A aplicação lê a data atual do sistema, soma todos os dígitos (dia + mês + 
 │       └── deploy.yml          # CI/CD → GitHub Pages (dispara só na main)
 └── assets/
     ├── css/
-    │   └── style.css           # Design tokens + layout + animações
+    │   └── style.css           # Design tokens (dois temas), layout, animações Vanilla CSS
     └── js/
         ├── calculator.js       # Lógica pura: theosophicReduction, dateToGematria, MEANINGS
-        └── app.js              # Manipulação de DOM, localStorage, Web Share API
+        ├── theme.js            # Toggle de tema claro/escuro + persistência em localStorage
+        └── app.js              # Orquestra UI, localStorage e Web Share API
 ```
 
 | Arquivo | Responsabilidade |
 |---|---|
-| `index.html` | Estrutura HTML5 semântica, carrega `app.js` como módulo ES6 |
-| `style.css` | Variáveis CSS (*design tokens*), Flexbox, tipografia, fade-in |
+| `index.html` | Estrutura HTML5 semântica; inline script no `<head>` aplica o tema antes do render (zero flash) |
+| `style.css` | Design tokens para temas escuro e claro, glassmorphism, borda `conic-gradient` animada via `@property`, starfield puro CSS |
 | `calculator.js` | Funções puras exportáveis e dicionário `MEANINGS` imutável (`Object.freeze`) |
-| `app.js` | Orquestra UI, `localStorage` e compartilhamento |
+| `theme.js` | `getTheme()`, `applyTheme()`, `toggleTheme()`, `initThemeToggle()` — sem efeitos colaterais fora do DOM |
+| `app.js` | Inicializa o tema, manipula o DOM, gerencia `localStorage` e compartilhamento |
 
 ---
 
@@ -102,18 +104,55 @@ Objeto imutável com os 9 significados baseados na tradição judaica:
 
 ---
 
+## API — `theme.js`
+
+| Função | Descrição |
+|---|---|
+| `getTheme()` | Retorna o tema ativo: `'dark'` ou `'light'` |
+| `applyTheme(theme)` | Aplica o tema com transição suave de 450ms e salva no `localStorage` |
+| `toggleTheme()` | Alterna entre `'dark'` e `'light'` |
+| `initThemeToggle()` | Vincula o botão `#theme-toggle` ao toggle e sincroniza o `aria-label` |
+
+---
+
 ## Design
 
-Paleta inspirada no **Templo de Salomão** (1 Reis 6–7 / 2 Crônicas 3–4):
+Dois temas inspirados no **Templo de Salomão** (1 Reis 6–7 / 2 Crônicas 3–4):
+
+### 🌑 Tema Escuro — Noite de Jerusalém
 
 | Token | Valor | Referência |
 |---|---|---|
 | `--color-bg` | `#07080f` | Noite do deserto de Judá |
-| `--color-surface` | `#0e1220` | Pedra calcária à noite |
+| `--color-surface` | `rgba(14,18,32,.78)` | Pedra calcária à noite |
 | `--color-border` | `#1e2d4a` | Azul *tekhelet* dos véus |
 | `--color-accent` | `#d4a843` | Ouro do *Kodesh HaKodashim* |
 | `--color-destiny` | `#9b6fd4` | Púrpura *argamán* real |
 | `--color-text` | `#f0e6cc` | Marfim / linho sacerdotal |
+
+### ☀️ Tema Claro — Pergaminho do Templo
+
+| Token | Valor | Referência |
+|---|---|---|
+| `--color-bg` | `#f2e8cc` | Pergaminho envelhecido |
+| `--color-surface` | `rgba(255,250,236,.82)` | Papiro à luz do dia |
+| `--color-border` | `#c4a040` | Ouro aquecido pelo sol |
+| `--color-accent` | `#8a5f0e` | Ouro profundo, legível no claro |
+| `--color-destiny` | `#5c2888` | Púrpura *argamán* profunda |
+| `--color-text` | `#1c1814` | Tinta sobre pergaminho |
+
+### Técnicas Vanilla CSS aplicadas
+
+| Técnica | Efeito |
+|---|---|
+| `@property --border-angle` | Ângulo animável (CSS Houdini) para borda `conic-gradient` |
+| `backdrop-filter: blur(24px)` | Glassmorphism real sobre o fundo |
+| `radial-gradient` em 24 camadas | Starfield (escuro) e partículas douradas (claro) |
+| `background-clip: text` | Gradient shimmer animado no título |
+| `text-shadow` multicamada + `@keyframes` | Glow pulsante nos números |
+| `.theme-transitioning *` | Transição suave de 450ms entre temas sem flash |
+| `prefers-reduced-motion` | Desativa animações para acessibilidade |
+| **Cinzel** + **Crimson Pro** | Tipografia de inscrição romana/hebraica |
 
 ---
 
