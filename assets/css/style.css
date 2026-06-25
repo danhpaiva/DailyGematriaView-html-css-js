@@ -1,18 +1,28 @@
-/* ── Design Tokens ─────────────────────────────────────── */
+/* ── Design Tokens — Paleta do Templo de Salomão ────────── */
+/*
+ * Referências: 1 Reis 6-7 / 2 Crônicas 3-4
+ *   bg/surface  → pedra calcária de Jerusalém à noite
+ *   border      → azul tekhelet (véus do Templo) escurecido
+ *   accent      → ouro do Kodesh HaKodashim
+ *   destiny     → púrpura argamán (paramentos reais)
+ *   text        → marfim / linho sacerdotal
+ *   muted       → pedra à sombra, azul acinzentado
+ */
 :root {
-  --color-bg:        #0d0d0d;
-  --color-surface:   #161616;
-  --color-border:    #2a2a2a;
-  --color-accent:    #c9a84c;
-  --color-accent-dim:#7a6130;
-  --color-text:      #e8e0d0;
-  --color-muted:     #6b6560;
+  --color-bg:        #07080f;
+  --color-surface:   #0e1220;
+  --color-border:    #1e2d4a;
+  --color-accent:    #d4a843;
+  --color-accent-dim:#7a5e22;
+  --color-text:      #f0e6cc;
+  --color-muted:     #5a6a8a;
+  --color-destiny:   #9b6fd4;
 
   --font-serif:  'Georgia', 'Times New Roman', serif;
   --font-sans:   system-ui, -apple-system, sans-serif;
 
   --radius:  12px;
-  --shadow:  0 4px 32px rgba(0, 0, 0, 0.6);
+  --shadow:  0 4px 40px rgba(0, 0, 0, 0.75);
 
   --fade-duration: 700ms;
 }
@@ -143,6 +153,137 @@ body {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   color: var(--color-muted);
+}
+
+/* ── Destiny number accent ──────────────────────────────── */
+.card__value--destiny {
+  color: var(--color-destiny);
+}
+
+/* ── Birthday form ──────────────────────────────────────── */
+.birthday-input-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.birthday-input {
+  flex: 1;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.55rem 0.75rem;
+  outline: none;
+  transition: border-color 200ms;
+  color-scheme: dark;
+}
+
+.birthday-input:focus {
+  border-color: var(--color-accent);
+}
+
+.birthday-btn {
+  background: var(--color-accent);
+  border: none;
+  border-radius: 8px;
+  color: #0d0d0d;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.55rem 1rem;
+  transition: opacity 200ms;
+  white-space: nowrap;
+}
+
+.birthday-btn:hover { opacity: 0.85; }
+
+.birthday-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.birthday-btn--ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.birthday-hint {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.birthday-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* ── Share button ───────────────────────────────────────── */
+.card__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.45rem 0.85rem;
+  transition: border-color 200ms, color 200ms;
+  white-space: nowrap;
+}
+
+.share-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.share-btn--ghost {
+  /* inherits .share-btn; identical ghost treatment */
+}
+
+/* ── Toast ──────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 300ms ease, transform 300ms ease;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* ── Responsive ────────────────────────────────────────── */
