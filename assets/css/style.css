@@ -1,0 +1,152 @@
+/* ── Design Tokens ─────────────────────────────────────── */
+:root {
+  --color-bg:        #0d0d0d;
+  --color-surface:   #161616;
+  --color-border:    #2a2a2a;
+  --color-accent:    #c9a84c;
+  --color-accent-dim:#7a6130;
+  --color-text:      #e8e0d0;
+  --color-muted:     #6b6560;
+
+  --font-serif:  'Georgia', 'Times New Roman', serif;
+  --font-sans:   system-ui, -apple-system, sans-serif;
+
+  --radius:  12px;
+  --shadow:  0 4px 32px rgba(0, 0, 0, 0.6);
+
+  --fade-duration: 700ms;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ──────────────────────────────────────────────── */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ── Layout ────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.header {
+  text-align: center;
+}
+
+.header__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+}
+
+.header__subtitle {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  /* fade-in state — JS adds .card--visible */
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity var(--fade-duration) ease,
+    transform var(--fade-duration) ease;
+}
+
+.card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Card rows ─────────────────────────────────────────── */
+.card__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.card__value {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-text);
+  text-align: right;
+}
+
+.card__value--number {
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ── Divider ───────────────────────────────────────────── */
+.card__divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ── Meaning block ─────────────────────────────────────── */
+.card__meaning {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.card__meaning-text {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  opacity: 0.88;
+}
+
+/* ── Footer ────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 360px) {
+  .card { padding: 1.25rem; }
+  .card__value--number { font-size: 2.4rem; }
+}
